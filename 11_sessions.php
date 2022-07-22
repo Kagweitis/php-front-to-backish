@@ -15,6 +15,7 @@
         $_SESSION['username'] = $username;
         
     header("Location: /extras/dashboard.php"); 
+    
     } else {
     echo 'incorrect login dets';
     }
@@ -24,8 +25,9 @@
 
        
     ?>
+    <!---->
     <form action="<?php echo htmlspecialchars
-    ($_SERVER['PHP_SELF']);?>" 
+    ($_SERVER['PHP_SELF']);?>"
         method="POST">
        <div>
             <label>Username</label>
