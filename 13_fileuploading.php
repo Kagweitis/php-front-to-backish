@@ -1,10 +1,39 @@
 <?php
     if (isset($_POST['submit'])){
+        //allowed extensions
+
+        $allowed_ext = array('png', 'jpeg', 'jpg');
+
         if (!empty($_FILES['upload']['name'])){
-            echo 'thanks for upload';
+            echo 'thanks for selecting file';
+           $file_name = $_FILES['upload']['name'];
+           $file_size = $_FILES['upload']['size'];
+           $file_tmp = $_FILES['upload']['tmp_name'];
+           $target = "uploads/${file_name}";
+
+            //checking allowed exts
+
+            $file_ext = explode('.', $file_name);
+            $file_ext = strtolower(end($file_ext));
+
+            echo $file_ext;
+
+            //validating the extensions
+
+            if (in_array($file_ext, $allowed_ext)){
+                if ($file_size <= 1000000){
+                    move_uploaded_file($file_tmp, $target);
+                    $message = '<p style="color:green"> Success!! </p>';
+                } else {
+                    echo '<p style="color: blue"> file too large !!!</p>';
+                }
+            } else {
+                echo '<p style="color: red"> invalid !!!</p>';
+            }
+
 
         } else{
-            $message = '<p style=color: red;> select a file man</p>';
+            $message = '<p style="color: brown"> select a file man</p>';
             
         }
     }
