@@ -6,7 +6,7 @@ define('DB_PASS', '1945');
 define('DB_HOST', 'localhost');
 
 //creating connection
-$conn = new mysqli(DB_HOST, DB_NAME, DB_PASS, DB_USER);
+$conn = mysqli_connect(DB_HOST, DB_NAME, DB_PASS, DB_USER);
 
 if ($conn->connect_error){
     die('connection failed '.$conn->connect_error);
@@ -14,3 +14,8 @@ if ($conn->connect_error){
     echo 'connected !!';
 }
 
+// if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
+//     echo 'We don\'t have mysqli!!!';
+// } else {
+//     echo 'Phew we have it!';
+// }
